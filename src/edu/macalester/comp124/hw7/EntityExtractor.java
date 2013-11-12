@@ -62,7 +62,7 @@ public class EntityExtractor {
     private String[] getNGrams(List<String> words, int offset, int n)  {
         String ngrams[] = new String[n];
         ngrams[0] = words.get(offset);
-        for (int i = 0; i < ngrams.length; i++) {
+        for (int i = 1; i < ngrams.length; i++) {
             if (offset + i < words.size()) {
                 ngrams[i] = ngrams[i-1] + " " + words.get(offset+i);
             }
