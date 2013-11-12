@@ -57,8 +57,21 @@ The train method needs to do the following *for each language*:
 * Split each page text into words.
 * Count the number of times each word occurs across all 1000 page texts.
 
-Hints:
-* You'll need to create instance variables to capture the data.
-* The Utils class has some helpful constants and a method to split words.
+You'll need to create instance variables to capture the data.
+The Utils class has some helpful constants and a method to split words.
+
+Next, complete the `detect` method for a given text.
+Do the following for each language: 
+* Split the text into words.
+* Retrieve the number of times each word occurs in the first 1000 page for that language.
+* Sum up those counts.
+
+Choose the language with the highest count. 
+
+Test your program by Googling texts in each language.
+Your program should do a pretty good job, but it may get a few languages confused - for example Scots and Simple English.
+For extra credit, figure out a way to improve the detection algorithm.
+
+### Part 2: Entity extractor
 
 
