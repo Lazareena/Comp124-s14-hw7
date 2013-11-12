@@ -25,3 +25,7 @@ If you are using a lab computer, **do not put the database in your H: drive** or
  - Run the LanguageDetector.java program. 
    You'll need to change the path passed to the WikapidiaWrapper constructor to be the full path to your extracted `wikAPIdia` directory 
    (make sure you have the capitalization correct!).
+
+### Part 1: Language detector
+
+
