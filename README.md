@@ -22,10 +22,24 @@ Along the way, you'll get a chance to practice with Java's Maps. Otherwise known
  - Download the database and extract it. 
 It contains a single `wikAPIdia` directory that contains a `db` directory. 
 If you are using a lab computer, **do not put the database in your H: drive** or your program will run ridiculously slowly.
- - Run the LanguageDetector.java program. 
-   You'll need to change the path passed to the WikapidiaWrapper constructor to be the full path to your extracted `wikAPIdia` directory 
-   (make sure you have the capitalization correct!).
 
+### Test your setup
+ 
+ Change PATH_DB in Utils.java to the full path to your extracted `wikAPIdia` directory (make sure you have the capitalization correct).
+ Run the LanguageDetector.java program. You should see some test output like:
+ 
+```
+Apple in other languages:
+	Bosnian: Jabuka
+	Scots: Aiple
+	Welsh: Afal
+	Icelandic: Epli
+	Hindi: सेब
+	Simple English: Apple
+Enter text to detect language, or 'stop'.
+```
+Type stop to stop the detector. It won't work until you finish Part 1.
+ 
 ### Part 1: Language detector
 
-
+For your first task, you'll write a class that detects the language of a text. You'll complete your work in 
