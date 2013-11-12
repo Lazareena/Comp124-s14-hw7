@@ -51,6 +51,11 @@ A LanguageDetector must be trained once to identify words in each language.
 To do this, you must call the `train()` method once each time your program is run.
 After training the detector, you can call `detect()` as many times as you would like.
 
-The train method needs to do the following for each installed language:
+The train method needs to do the following *for each language*:
 
-* 
+* Extract the page text from the first 1000 pages.
+* Split each page text into words.
+* Count the number of times each word occurs across all 1000 page texts.
+
+Hints:
+* These
