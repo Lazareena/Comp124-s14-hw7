@@ -58,4 +58,7 @@ The train method needs to do the following *for each language*:
 * Count the number of times each word occurs across all 1000 page texts.
 
 Hints:
-* These
+* You'll need to create instance variables to capture the data.
+* The Utils class has some helpful constants and a method to split words.
+
+
