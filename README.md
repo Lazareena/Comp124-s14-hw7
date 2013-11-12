@@ -6,10 +6,45 @@ In this homework assignment you will develop a program that analyzes text in ano
 - Identify concepts in the text associated with Wikipedia articles.
 - Translate the concepts (if possible) to English.
 
-Here it is in action:
+Here it is in action for the Scots language:
 
 ```
-Foo bar baz
+Kofi Annan (born 8 Aprile 1938) is a Ghanaian diplomat who served as the seivent Secretary-General o the Unitit Naitions frae 1 Januar 1997 tae 31 December 2006. 
+Annan an the Unitit Naitions wur the co-recipients o the 2001 Nobel Peace Prize for his foondin the Global AIDS and Health Fund for tae support developin kintras in their fecht tae care for their fowk.
+
+Translating text from Scots to Simple English found entites:
+	'Kofi Annan' => 'Kofi Annan'
+	'8 Aprile' => 'April 8'
+	'Unitit Naitions' => 'United Nations'
+	'1 Januar' => 'January 1'
+	'1997' => '1997'
+	'31 December' => 'December 31'
+	'Unitit Naitions' => 'United Nations'
+	'2001' => '2001'
+	'Nobel Peace Prize' => 'Nobel Peace Prize'
+	'Kintra' => 'State'
+```
+
+And for Hindi:
+```
+कोफ़ी अन्नान(जन्म: 8 अप्रैल 1938) एक घानाई कूटनीतिज्ञ हैं। वे 1962 से 1974 तक, और 1974 से 2006 तक संयुक्त राष्ट्र में कार्यरत रहे। वे 1 जनवरी 1997 से 31 दिसम्बर 2006 तक दो कार्यकालों के लिये संयुक्त राष्ट्र के महासचिव रहे। उन्हें संयुक्त राष्ट्र के साथ 2001 में नोबेल शांति पुरस्कार से सह-पुरस्कृत किया गया।
+
+translating text from Hindi to Simple English found entites:
+	'८ अप्रैल' => 'April 8'
+	'राजनय' => 'Diplomacy'
+	'१९६२' => '1962'
+	'१९७४' => '1974'
+	'१९७४' => '1974'
+	'२००६' => '2006'
+	'संयुक्त राष्ट्र' => 'United Nations'
+	'१ जनवरी' => 'January 1'
+	'१९९७' => '1997'
+	'दिसम्बर' => 'December'
+	'२००६' => '2006'
+	'संयुक्त राष्ट्र' => 'United Nations'
+	'संयुक्त राष्ट्र' => 'United Nations'
+	'२००१' => '2001'
+	'नोबेल शांति पुरस्कार' => uknown
 ```
 
 Along the way, you'll get a chance to practice with Java's Maps. Otherwise known as HashMaps, hashtables, or dictionaries.
