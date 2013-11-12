@@ -22,7 +22,15 @@ public class LanguageDetector {
      */
     private final WikAPIdiaWrapper wrapper;
 
-    // Add your instance variables here.
+    /**
+     * For each language, word -> word count
+     */
+    Map<Language, Map<String, Integer>> counts = new HashMap<Language, Map<String, Integer>>();
+
+    /**
+     * For each language, the number of total words in the language.
+     */
+    Map<Language, Integer> sums = new HashMap<Language, Integer>();
 
     /**
      * Constructs a new language detector.
@@ -37,6 +45,22 @@ public class LanguageDetector {
      * Only needs to be called once each time your program is run.
      */
     public void train() {
+        for (Language lang : wrapper.getLanguages()) {
+            Map<String, Integer> counts = new HashMap<String, Integer>();
+            int n = 0;
+            for (String text : wrapper.getPageTexts(lang, 1000)) {
+                for (String word : Utils.splitWords(text)) {
+                    if (counts.containsKey(word)) {
+                        counts.put(word, counts.get(word) + 1);
+                    } else {
+                        counts.put(word, 1);
+                    }
+                    n++;
+                }
+            }
+            this.counts.put(lang, counts);
+            sums.put(lang, n);
+        }
     }
 
     /**
@@ -46,6 +70,20 @@ public class LanguageDetector {
      */
     public Language detect(String text) {
         Language bestLang = null;
+        double bestScore = 0.0;
+        for (Language lang : wrapper.getLanguages()) {
+            double score = 0.0;
+            for (String word : Utils.splitWords(text)) {
+                if (counts.get(lang).containsKey(word)) {
+                    score += counts.get(lang).get(word);
+                }
+            }
+            score /= sums.get(lang);
+            if (score > bestScore) {
+                bestScore = score;
+                bestLang = lang;
+            }
+        }
         return bestLang;
     }
 
