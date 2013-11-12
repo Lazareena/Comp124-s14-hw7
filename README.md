@@ -118,18 +118,18 @@ For extra credit, figure out a way to improve the detection algorithm.
 I have provided you with an empty entity extractor class. 
 For the second portion of the homework, you'll need to complete the entity extractor class and the main method that uses it.
 
-**simple extract** Your `extract()` method should first detect the language of the text using its language detector.
+**A. Implement a simple extract:** Your `extract()` method should first detect the language of the text using its language detector.
 Next, split your text into words and check each word to see if it is the title of a Wikipedia article in the source langauge.
 If a word does correspond to an article, try to find the simple english equivalent of the article (this isn't always possible).
 Format your results similarly to the output you see above.
 
-**main method** Complete the main method of your program.
+**B. Implement main:** Complete the main method of your program.
 You can model your work on the LanguageDetector's main method.
 Create the components necessary for an entity extractor and then create the entity extractor itself.
 Repeatedly ask the user for a text and then extract entities in the text.
 You should now be able to test your program, but it will only extract single word concepts.
 
-**fancy extract**
+**C. Implement a fancy extract:**
 Finally, you'll improve the performance of your algorithm by looking for more *specific* concepts that span more than one word (e.g. `Barack Obama`).
 To do this, you'll need to understand the concept of [n-grams](http://en.wikipedia.org/wiki/N-gram) to complete this task. 
 An n-gram is simply a series of n words that occur consecutively in a text. For example, given the text:
