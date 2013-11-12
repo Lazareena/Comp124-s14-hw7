@@ -108,4 +108,5 @@ For extra credit, figure out a way to improve the detection algorithm.
 
 ### Part 2: Entity extractor
 
-
+I have provided you with an almost completely empty entity extractor class.
+For part 2, you will... TBA
