@@ -135,4 +135,4 @@ Macalester is committed to being a preeminent liberal arts college
 
 Adjust your program so that it looks for trigrams, bigrams, and unigrams.
 Your program should prefer trigrams to bigrams and bigrams to unigrams. 
-That is, if a word is part of a trigram, it should not be used as a bigram or unigram.
+More specifically, if a word is part of a trigram, it should not be used as a bigram or unigram.
