@@ -54,13 +54,20 @@ Along the way, you'll get a chance to practice with Java's Maps. Otherwise known
  - Fork this repo, and clone your fork.
  - Import the module into IntelliJ.
  - Add all the jars in the `hw7/lib` as libraries (right click -> add as library).
- - Download the database and extract it. 
+ - Download the [database](http://poliwiki.macalester.edu/shilad/wikAPIdia.translation.zip) and extract it. 
 It contains a single `wikAPIdia` directory that contains a `db` directory. 
 If you are using a lab computer, **do not put the database in your H: drive** or your program will run ridiculously slowly.
 
 ### Test your setup
+ A few notes about running your programs:
  
- Change PATH_DB in Utils.java to the full path to your extracted `wikAPIdia` directory (make sure you have the capitalization correct).
+ - You will need to adjust your programs' run configurations. To do this, after running a program once, click on "edit configurations" from the run menu.
+ - You should run your programs from the hw7 directory, not your project workspace. 
+   To change this, go to the program's run configuration, select the rightmost button after Working directory and select MODULE_DIR.
+ - You may need to adjust the memory settings. 
+ Select the program's run configuration and add the vm option `-Xmx1024M` to give your program 1GB of memory (this should be plenty).
+ 
+Change PATH_DB in Utils.java to the full path to your extracted `wikAPIdia` directory (make sure you have the capitalization correct).
  Run the LanguageDetector.java program. You should see some test output like:
  
 ```
