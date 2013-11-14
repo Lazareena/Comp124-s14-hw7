@@ -98,6 +98,7 @@ After training the detector, you can call `detect()` as many times as you would 
 * Extract the page text from the first 1000 pages.
 * Split each page text into words.
 * Count the number of times each word occurs across all 1000 page texts.
+* TODO: give example.
 
 You'll need to create instance variables to capture the data.
 **The Utils class has some helpful constants and a method to split words.**
