@@ -100,7 +100,7 @@ After training the detector, you can call `detect()` as many times as you would 
 * Count the number of times each word occurs across all 1000 page texts.
 
 You'll need to create instance variables to capture the data.
-The Utils class has some helpful constants and a method to split words.
+**The Utils class has some helpful constants and a method to split words.**
 
 `detect(text)`: Given a particular text, the detect method does the following for each language: 
 * Split the text into words.
