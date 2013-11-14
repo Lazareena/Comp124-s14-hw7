@@ -130,7 +130,7 @@ Create the components necessary for an entity extractor and then create the enti
 Repeatedly ask the user for a text and then extract entities in the text.
 You should now be able to test your program, but it will only extract single word concepts.
 
-**C. Implement a fancy extract:**
+**C. EXTRA CREDIT: Implement a fancy extract:**
 Finally, you'll improve the performance of your algorithm by looking for more *specific* concepts that span more than one word (e.g. `Barack Obama`).
 To do this, you'll need to understand the concept of [n-grams](http://en.wikipedia.org/wiki/N-gram) to complete this task. 
 An n-gram is simply a series of n words that occur consecutively in a text. For example, given the text:
