@@ -89,11 +89,12 @@ For your first task, you'll write a class that detects the language of a text.
 In a nutshell, the Language detector generates a score that indicates how common the words in a text are in that langauge.
 For example, assume you're scoring the text "Aw human sowels is born free" against the language Scots.
 You will sample 1000 Scots Wikipedia articles and find:
- * word "Aw" has count 9
- * word "human" has count 18
- * word "is" has count 2377
- * word "born" has count 67
- * word "free" has count 10
+ *  "Aw" has count 9
+ *  "human" has count 18
+ *  "is" has count 2377
+ *  "born" has count 67
+ *  "free" has count 10
+ 
 Thus, the total score for Scots is (9 + 18 + 2377 + 67 + 10) = 2481. 
 Your program will repeat this computation in all languages and choose the language with the highest score.
 
