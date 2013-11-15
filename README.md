@@ -85,20 +85,30 @@ Type stop to stop the detector. It won't work until you finish Part 1.
 ### Part 1: Language detector
 
 For your first task, you'll write a class that detects the language of a text. 
+
+In a nutshell, the Language detector generates a score that indicates how common the words in a text are in that langauge.
+For example, assume you're scoring the text "Aw human sowels is born free" against the language Scots.
+You will sample 1000 Scots Wikipedia articles and find:
+ * word "Aw" has count 9
+ * word "human" has count 18
+ * word "is" has count 2377
+ * word "born" has count 67
+ * word "free" has count 10
+Thus, the total score for Scots is (9 + 18 + 2377 + 67 + 10) = 2481. 
+Your program will repeat this computation in all languages and choose the language with the highest score.
+
 Take a look at LanguageDector.java. 
 You'll complete your work for part 1 in this class.
 I have declared the main methods for you: `train()`, `detect()`, and the `main()` method, but they don't do anything useful.
 
 A LanguageDetector must be trained once to identify words in each language. 
-To do this, you must call the `train()` method once each time your program is run.
-After training the detector, you can call `detect()` as many times as you would like.
+The train method essentially "precomputes" the counts for each word in each language to speed up language detection.
 
 `train()`: The train method needs to do the following *for each language*:
 
 * Extract the page text from the first 1000 pages.
 * Split each page text into words.
-* Count the number of times each word occurs across all 1000 page texts.
-* TODO: give example.
+* Count the number of every unique word in the first 1000 articles occurs across all 1000 articles.
 
 You'll need to create instance variables to capture the data.
 **The Utils class has some helpful constants and a method to split words.**
