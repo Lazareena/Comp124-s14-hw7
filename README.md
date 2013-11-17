@@ -54,13 +54,20 @@ Along the way, you'll get a chance to practice with Java's Maps. Otherwise known
  - Fork this repo, and clone your fork.
  - Import the module into IntelliJ.
  - Add all the jars in the `hw7/lib` as libraries (right click -> add as library).
- - Download the database and extract it. 
+ - Download the [database](http://poliwiki.macalester.edu/shilad/wikAPIdia.translation.zip) and extract it. 
 It contains a single `wikAPIdia` directory that contains a `db` directory. 
 If you are using a lab computer, **do not put the database in your H: drive** or your program will run ridiculously slowly.
 
 ### Test your setup
+ A few notes about running your programs:
  
- Change PATH_DB in Utils.java to the full path to your extracted `wikAPIdia` directory (make sure you have the capitalization correct).
+ - You will need to adjust your programs' run configurations. To do this, after running a program once, click on "edit configurations" from the run menu.
+ - You should run your programs from the hw7 directory, not your project workspace. 
+   To change this, go to the program's run configuration, select the rightmost button after Working directory and select MODULE_DIR.
+ - You may need to adjust the memory settings. 
+ Select the program's run configuration and add the vm option `-Xmx1024M` to give your program 1GB of memory (this should be plenty).
+ 
+Change PATH_DB in Utils.java to the full path to your extracted `wikAPIdia` directory (make sure you have the capitalization correct).
  Run the LanguageDetector.java program. You should see some test output like:
  
 ```
@@ -78,22 +85,34 @@ Type stop to stop the detector. It won't work until you finish Part 1.
 ### Part 1: Language detector
 
 For your first task, you'll write a class that detects the language of a text. 
+
+In a nutshell, the Language detector generates a score that indicates how common the words in a text are in that langauge.
+For example, assume you're scoring the text "Aw human sowels is born free" against the language Scots.
+You will sample 1000 Scots Wikipedia articles and find:
+ *  "Aw" has count 9
+ *  "human" has count 18
+ *  "is" has count 2377
+ *  "born" has count 67
+ *  "free" has count 10
+ 
+Thus, the total score for Scots is (9 + 18 + 2377 + 67 + 10) = 2481. 
+Your program will repeat this computation in all languages and choose the language with the highest score.
+
 Take a look at LanguageDector.java. 
 You'll complete your work for part 1 in this class.
 I have declared the main methods for you: `train()`, `detect()`, and the `main()` method, but they don't do anything useful.
 
 A LanguageDetector must be trained once to identify words in each language. 
-To do this, you must call the `train()` method once each time your program is run.
-After training the detector, you can call `detect()` as many times as you would like.
+The train method essentially "precomputes" the counts for each word in each language to speed up language detection.
 
 `train()`: The train method needs to do the following *for each language*:
 
 * Extract the page text from the first 1000 pages.
 * Split each page text into words.
-* Count the number of times each word occurs across all 1000 page texts.
+* Count the number of every unique word in the first 1000 articles occurs across all 1000 articles.
 
 You'll need to create instance variables to capture the data.
-The Utils class has some helpful constants and a method to split words.
+**The Utils class has some helpful constants and a method to split words.**
 
 `detect(text)`: Given a particular text, the detect method does the following for each language: 
 * Split the text into words.
@@ -108,5 +127,31 @@ For extra credit, figure out a way to improve the detection algorithm.
 
 ### Part 2: Entity extractor
 
-I have provided you with an almost completely empty entity extractor class.
-For part 2, you will... TBA
+I have provided you with an empty entity extractor class. 
+For the second portion of the homework, you'll need to complete the entity extractor class and the main method that uses it.
+
+**A. Implement a simple extract:** Your `extract()` method should first detect the language of the text using its language detector.
+Next, split your text into words and check each word to see if it is the title of a Wikipedia article in the source langauge.
+If a word does correspond to an article, try to find the simple english equivalent of the article (this isn't always possible).
+Format your results similarly to the output you see above.
+
+**B. Implement main:** Complete the main method of your program.
+You can model your work on the LanguageDetector's main method.
+Create the components necessary for an entity extractor and then create the entity extractor itself.
+Repeatedly ask the user for a text and then extract entities in the text.
+You should now be able to test your program, but it will only extract single word concepts.
+
+**C. EXTRA CREDIT: Implement a fancy extract:**
+Finally, you'll improve the performance of your algorithm by looking for more *specific* concepts that span more than one word (e.g. `Barack Obama`).
+To do this, you'll need to understand the concept of [n-grams](http://en.wikipedia.org/wiki/N-gram) to complete this task. 
+An n-gram is simply a series of n words that occur consecutively in a text. For example, given the text:
+```
+Macalester is committed to being a preeminent liberal arts college
+```
+* The 1-grams (i.e. unigrams) would be the individual words: "Macalester", "is", "committed", ....
+* The 2-grams (i.e. bigrams) would be consecutive pairs of words: "Macalester is", "is committed", "commited to" ...
+* The 3-grams (i.e. trigrams) would be consecutive triples of words: "Macalester is committed", "is committed to", ...
+
+Adjust your program so that it looks for trigrams, bigrams, and unigrams.
+Your program should prefer trigrams to bigrams and bigrams to unigrams. 
+More specifically, if a word is part of a trigram, it should not be used as a bigram or unigram.
