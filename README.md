@@ -49,26 +49,23 @@ translating text from Hindi to Simple English found entites:
 
 Along the way, you'll get a chance to practice with Java's Maps. Otherwise known as HashMaps, hashtables, or dictionaries.
 
-### Prepartion
+### Preparation
 
  - Fork this repo, and clone your fork.
  - Import the module into IntelliJ.
- - Add all the jars in the `hw7/lib` as libraries (right click -> add as library).
- - Download the [database](http://poliwiki.macalester.edu/shilad/wikAPIdia.translation.zip) and extract it. 
-It contains a single `wikAPIdia` directory that contains a `db` directory. 
+ - Create a directory called "wp" (you may have already done this for HW6). if you are working on a lab computer, you should place it in /Users/<your name>/wp. If you are on a laptop, you can place it anywhere.
+- Download the [wp-hw7 database](http://www.shilad.com/wp-hw7.zip) and extract it. 
+It contains a single `wp-hw7` directory that contains a `db` directory. 
 If you are using a lab computer, **do not put the database in your H: drive** or your program will run ridiculously slowly.
 
-### Test your setup
- A few notes about running your programs:
- 
- - You will need to adjust your programs' run configurations. To do this, after running a program once, click on "edit configurations" from the run menu.
- - You should run your programs from the hw7 directory, not your project workspace. 
-   To change this, go to the program's run configuration, select the rightmost button after Working directory and select MODULE_DIR.
- - You may need to adjust the memory settings. 
- Select the program's run configuration and add the vm option `-Xmx1024M` to give your program 1GB of memory (this should be plenty).
- 
-Change PATH_DB in Utils.java to the full path to your extracted `wikAPIdia` directory (make sure you have the capitalization correct).
- Run the LanguageDetector.java program. You should see some test output like:
+
+### Make sure that things are installed correctly:
+
+1. Open the `WikAPIdiaWrapper.java` file in IntelliJ.
+2. Update the `DATA_DIRECTORY` variable to point to the [absolute path](http://www.computerhope.com/jargon/a/absopath.htm) to the `wp-hw7` directory you created in the previous step.
+1. Open `LanguageDetector.java`.
+4. Run the class as an application.
+You should see information about the [Apple article](http://simple.wikipedia.org/wiki/Apple):
  
 ```
 Apple in other languages:
@@ -89,13 +86,13 @@ For your first task, you'll write a class that detects the language of a text.
 In a nutshell, the Language detector generates a score that indicates how common the words in a text are in that langauge.
 For example, assume you're scoring the text "Aw human sowels is born free" against the language Scots.
 You will sample 1000 Scots Wikipedia articles and find:
- *  "Aw" has count 9
- *  "human" has count 18
- *  "is" has count 2377
+ *  "Aw" has count 12
+ *  "human" has count 19
+ *  "is" has count 2408
  *  "born" has count 67
- *  "free" has count 10
+ *  "free" has count 11
  
-Thus, the total score for Scots is (9 + 18 + 2377 + 67 + 10) = 2481. 
+Thus, the total score for Scots is (12 + 19 + 2408 + 67 + 11) = 2517. 
 Your program will repeat this computation in all languages and choose the language with the highest score.
 
 Take a look at LanguageDector.java. 
@@ -107,12 +104,12 @@ The train method essentially "precomputes" the counts for each word in each lang
 
 `train()`: The train method needs to do the following *for each language*:
 
+* **Hint: The Utils class has some helpful constants and a method to split words.**
 * Extract the page text from the first 1000 pages.
-* Split each page text into words.
-* Count the number of every unique word in the first 1000 articles occurs across all 1000 articles.
+* Split each page text into words (look for a helper method in Utils).
+* Count how many times every unique word occurs across all 1000 pages.
 
 You'll need to create instance variables to capture the data.
-**The Utils class has some helpful constants and a method to split words.**
 
 `detect(text)`: Given a particular text, the detect method does the following for each language: 
 * Split the text into words.
