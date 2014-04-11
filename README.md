@@ -102,14 +102,15 @@ I have declared the main methods for you: `train()`, `detect()`, and the `main()
 A LanguageDetector must be trained once to identify words in each language. 
 The train method essentially "precomputes" the counts for each word in each language to speed up language detection.
 
-`train()`: The train method needs to do the following *for each language*:
+`train()`: The train method needs to do the following:
 
 * **Hint: The Utils class has some helpful constants and a method to split words.**
-* Extract the page text from the first 1000 pages.
-* Split each page text into words (look for a helper method in Utils).
-* Count how many times every unique word occurs across all 1000 pages.
+* For each language:
+    * Extract the page text from the first 1000 pages.
+    * Split each page text into words (look for a helper method in Utils).
+    * Count how many times every unique word occurs across all 1000 pages.
 
-You'll need to create instance variables to capture the data.
+You'll need to create instance variables to capture the data (counts for each word for each language).
 
 `detect(text)`: Given a particular text, the detect method does the following for each language: 
 * Split the text into words.
