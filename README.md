@@ -86,13 +86,13 @@ For your first task, you'll write a class that detects the language of a text.
 In a nutshell, the Language detector generates a score that indicates how common the words in a text are in that langauge.
 For example, assume you're scoring the text "Aw human sowels is born free" against the language Scots.
 You will sample 1000 Scots Wikipedia articles and find:
- *  "Aw" has count 9
- *  "human" has count 18
- *  "is" has count 2377
+ *  "Aw" has count 12
+ *  "human" has count 19
+ *  "is" has count 2408
  *  "born" has count 67
- *  "free" has count 10
+ *  "free" has count 11
  
-Thus, the total score for Scots is (9 + 18 + 2377 + 67 + 10) = 2481. 
+Thus, the total score for Scots is (12 + 19 + 2408 + 67 + 11) = 2517. 
 Your program will repeat this computation in all languages and choose the language with the highest score.
 
 Take a look at LanguageDector.java. 
@@ -104,12 +104,12 @@ The train method essentially "precomputes" the counts for each word in each lang
 
 `train()`: The train method needs to do the following *for each language*:
 
+* **Hint: The Utils class has some helpful constants and a method to split words.**
 * Extract the page text from the first 1000 pages.
-* Split each page text into words.
-* Count the number of every unique word in the first 1000 articles occurs across all 1000 articles.
+* Split each page text into words (look for a helper method in Utils).
+* Count how many times every unique word occurs across all 1000 pages.
 
 You'll need to create instance variables to capture the data.
-**The Utils class has some helpful constants and a method to split words.**
 
 `detect(text)`: Given a particular text, the detect method does the following for each language: 
 * Split the text into words.
