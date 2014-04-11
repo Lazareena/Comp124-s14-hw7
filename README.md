@@ -53,9 +53,7 @@ Along the way, you'll get a chance to practice with Java's Maps. Otherwise known
 
  - Fork this repo, and clone your fork.
  - Import the module into IntelliJ.
- - Create a directory called "wp-db". if you are working on a lab computer, you should place it in /Users/<your name>/wp. If you are on a laptop, you can place it anywhere.
- - Download the compressed 66MB WikAPIdia-small database, unzip it, and place the extracted "wp-db-small" directory inside the wp directory you created in the previous step. 
-
+ - Create a directory called "wp" (you may have already done this for HW6). if you are working on a lab computer, you should place it in /Users/<your name>/wp. If you are on a laptop, you can place it anywhere.
 - Download the [wp-hw7 database](http://www.shilad.com/wp-hw7.zip) and extract it. 
 It contains a single `wp-hw7` directory that contains a `db` directory. 
 If you are using a lab computer, **do not put the database in your H: drive** or your program will run ridiculously slowly.
@@ -65,19 +63,9 @@ If you are using a lab computer, **do not put the database in your H: drive** or
 
 1. Open the `WikAPIdiaWrapper.java` file in IntelliJ.
 2. Update the `DATA_DIRECTORY` variable to point to the [absolute path](http://www.computerhope.com/jargon/a/absopath.htm) to the `wp-hw7` directory you created in the previous step.
-1. Open `WikAPIdiaExample.java`.
+1. Open `LanguageDetector.java`.
 4. Run the class as an application.
-You should see information about the [Apple article](http://simple.wikipedia.org/wiki/Apple) in simple English Wikipedia that ends with:
-
-### Test your setup
- A few notes about running your programs:
- 
- - You will need to adjust your programs' run configurations. To do this, after running a program once, click on "edit configurations" from the run menu.
- - You may need to adjust the memory settings. 
- Select the program's run configuration and add the vm option `-Xmx1024M` to give your program 1GB of memory (this should be plenty).
- 
-Change PATH_DB in Utils.java to the full path to your extracted `wikAPIdia` directory (make sure you have the capitalization correct).
- Run the LanguageDetector.java program. You should see some test output like:
+You should see information about the [Apple article](http://simple.wikipedia.org/wiki/Apple):
  
 ```
 Apple in other languages:
