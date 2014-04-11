@@ -49,21 +49,30 @@ translating text from Hindi to Simple English found entites:
 
 Along the way, you'll get a chance to practice with Java's Maps. Otherwise known as HashMaps, hashtables, or dictionaries.
 
-### Prepartion
+### Preparation
 
  - Fork this repo, and clone your fork.
  - Import the module into IntelliJ.
- - Add all the jars in the `hw7/lib` as libraries (right click -> add as library).
- - Download the [database](http://poliwiki.macalester.edu/shilad/wikAPIdia.translation.zip) and extract it. 
-It contains a single `wikAPIdia` directory that contains a `db` directory. 
+ - Create a directory called "wp-db". if you are working on a lab computer, you should place it in /Users/<your name>/wp. If you are on a laptop, you can place it anywhere.
+ - Download the compressed 66MB WikAPIdia-small database, unzip it, and place the extracted "wp-db-small" directory inside the wp directory you created in the previous step. 
+
+- Download the [wp-hw7 database](http://www.shilad.com/wp-hw7.zip) and extract it. 
+It contains a single `wp-hw7` directory that contains a `db` directory. 
 If you are using a lab computer, **do not put the database in your H: drive** or your program will run ridiculously slowly.
+
+
+### Make sure that things are installed correctly:
+
+1. Open the `WikAPIdiaWrapper.java` file in IntelliJ.
+2. Update the `DATA_DIRECTORY` variable to point to the [absolute path](http://www.computerhope.com/jargon/a/absopath.htm) to the `wp-hw7` directory you created in the previous step.
+1. Open `WikAPIdiaExample.java`.
+4. Run the class as an application.
+You should see information about the [Apple article](http://simple.wikipedia.org/wiki/Apple) in simple English Wikipedia that ends with:
 
 ### Test your setup
  A few notes about running your programs:
  
  - You will need to adjust your programs' run configurations. To do this, after running a program once, click on "edit configurations" from the run menu.
- - You should run your programs from the hw7 directory, not your project workspace. 
-   To change this, go to the program's run configuration, select the rightmost button after Working directory and select MODULE_DIR.
  - You may need to adjust the memory settings. 
  Select the program's run configuration and add the vm option `-Xmx1024M` to give your program 1GB of memory (this should be plenty).
  
