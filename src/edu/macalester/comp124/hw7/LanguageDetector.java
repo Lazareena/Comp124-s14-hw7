@@ -51,7 +51,7 @@ public class LanguageDetector {
 
     public static void main(String args[]) throws IOException {
         // Test to make sure the database is installed properly
-        WikAPIdiaWrapper wrapper = new WikAPIdiaWrapper(Utils.PATH_DB);
+        WikAPIdiaWrapper wrapper = new WikAPIdiaWrapper();
         LocalPage page = wrapper.getLocalPageByTitle(Utils.LANG_SIMPLE, "Apple");
         System.out.println("Apple in other languages:");
         for (LocalPage page2 : wrapper.getInOtherLanguages(page)) {

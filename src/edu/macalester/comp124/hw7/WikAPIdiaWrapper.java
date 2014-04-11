@@ -11,8 +11,10 @@ import org.wikapidia.core.lang.Language;
 import org.wikapidia.core.lang.LanguageSet;
 import org.wikapidia.core.lang.LocalId;
 import org.wikapidia.core.model.*;
+import org.wikapidia.dao.load.PipelineLoader;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,10 @@ import java.util.List;
  */
 public class WikAPIdiaWrapper {
 
+    // The data directory for WikAPIdia. Change this so it is correct for your laptop
+    // It should be the full path to either "wp-db-large" or "wp-db-small"
+    private static final String DATA_DIRECTORY = "/Users/shilad/Documents/IntelliJ/comp-124-s14/hw7/wp-hw7";
+
     private static final int CONCEPT_ALGORITHM_ID = 1;
 
     private final Env env;
@@ -35,6 +41,11 @@ public class WikAPIdiaWrapper {
     private UniversalPageDao upDao;
     private LocalCategoryMemberDao cmDao;
 
+
+    public WikAPIdiaWrapper() {
+        this(DATA_DIRECTORY);
+    }
+
     /**
      * Creates a new wrapper object with default configuration settings.
      *
@@ -43,24 +54,22 @@ public class WikAPIdiaWrapper {
      */
     public WikAPIdiaWrapper(String baseDir) {
         try {
-            File wpDir = new File(baseDir);
-            String basename = FilenameUtils.getBaseName(wpDir.getAbsolutePath());
-            if (!basename.equals("wikAPIdia")) {
-                System.err.println("baseDir should end in 'wikAPIdia', but found '" + basename + "'");
-                System.exit(1);
+            File dbDir = new File(baseDir);
+            System.err.println("Checking to see if " + dbDir.getAbsolutePath() + " exists...");
+            if (!FilenameUtils.getBaseName(dbDir.getAbsolutePath()).equals("db")) {
+                dbDir = new File(dbDir, "db");
             }
-            File dbDir = new File(wpDir, "db");
-            System.out.println("Using wikAPIdia path: " + dbDir.getParentFile().getAbsolutePath());
-            if (!dbDir.isDirectory() || !new File(dbDir, "h2.h2.db").isFile()) {
+            if (!dbDir.isDirectory()) {
                 System.err.println(
-                        "Database directory " + dbDir + " does not exist or is missing h2.h2.db file." +
-                                "Have you downloaded and extracted the database?" +
-                                "Are you running the program from the right directory?"
+                        "\n\n!!!!!!!!!!!!!!ERROR. READ THIS MESSAGE!!!!!!!!!!!!!!!!!\n" +
+                                "Database directory " + dbDir.getAbsolutePath() + " does not exist.\n" +
+                                "Have you downloaded and extracted the database?\n" +
+                                "Did you specify the correct DATA_DIRECTORY in WikAPIdiaWrapper?"
                 );
                 System.exit(1);
             }
             env = new EnvBuilder()
-                    .setBaseDir(wpDir.getAbsolutePath())
+                    .setBaseDir(dbDir.getParent())
                     .build();
             this.rpDao = env.getConfigurator().get(RawPageDao.class);
             this.lpDao = env.getConfigurator().get(LocalPageDao.class);
@@ -86,22 +95,6 @@ public class WikAPIdiaWrapper {
     public LocalPage getLocalPageByTitle(Language language, String title) {
         try {
             return lpDao.getByTitle(new Title(title, language), NameSpace.ARTICLE);
-        } catch (DaoException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * Returns the number of WikiLinks to a particular page.
-     * @param page
-     * @return
-     */
-    public int getNumInLinks(LocalPage page) {
-        DaoFilter filter = new DaoFilter()
-                .setLanguages(page.getLanguage())
-                .setDestIds(page.getLocalId());
-        try {
-            return llDao.getCount(filter);
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }
@@ -195,5 +188,23 @@ public class WikAPIdiaWrapper {
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    /**
+     * Load a set of languages into the h2 database.
+     * THIS MUST BE CALLED BEFORE AN INSTANCE OF WIKIPADIA WRAPPER IS CREATED!
+     */
+    public static void main(String args[]) throws ClassNotFoundException, InterruptedException, ConfigurationException, IOException {
+        PipelineLoader.main(new String[]{
+                "-l", "simple,cy,sco,hi,is,bs",    // You can change this line to load different languages.
+                "-f",
+                "--base-dir", DATA_DIRECTORY,
+                "-s", "fetchlinks:on",
+                "-s", "download:on",
+                "-s", "dumploader:on",
+                "-s", "redirects:on",
+                "-s", "concept:on",
+        });
     }
 }

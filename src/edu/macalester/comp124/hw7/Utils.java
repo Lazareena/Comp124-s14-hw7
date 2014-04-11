@@ -10,12 +10,6 @@ import java.util.List;
  * @author Shilad Sen
  */
 public class Utils {
-
-    /**
-     * YOU MUST Update this to point to your path
-     */
-    public static final String PATH_DB = "./wikAPIdia";
-
     /**
      * Individual languages installed in the database.
      */
