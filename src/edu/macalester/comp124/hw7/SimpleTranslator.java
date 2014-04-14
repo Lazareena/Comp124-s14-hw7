@@ -52,7 +52,7 @@ public class SimpleTranslator {
     }
 
     public static void main(String args[]) throws IOException {
-        WikAPIdiaWrapper wrapper = new WikAPIdiaWrapper("../db");
+        WikAPIdiaWrapper wrapper = new WikAPIdiaWrapper();
         LanguageDetector detector = new LanguageDetector(wrapper);
         detector.train();
         SimpleTranslator translator = new SimpleTranslator(wrapper, detector);
