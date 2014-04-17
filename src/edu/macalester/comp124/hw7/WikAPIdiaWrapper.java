@@ -30,7 +30,7 @@ public class WikAPIdiaWrapper {
 
     // The data directory for WikAPIdia. Change this so it is correct for your laptop
     // It should be the full path to either "wp-db-large" or "wp-db-small"
-    private static final String DATA_DIRECTORY = "/Users/shilad/Documents/IntelliJ/comp-124-s14/hw7/wp-hw7";
+    private static final String DATA_DIRECTORY = "/Users/Reena/Desktop/wp-hw7 3";
 
     private static final int CONCEPT_ALGORITHM_ID = 1;
 
